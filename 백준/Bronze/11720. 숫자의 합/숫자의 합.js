@@ -1,7 +1,12 @@
 const fs = require("fs");
 const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
-const numbers = input[1].slice().split("").map(Number);
-const result = numbers.reduce((p, c) => p + c);
+const count = input[0];
+const numbers = input[1];
+let result = 0;
+
+for (let i = 0; i < count; i++) {
+  result += Number(numbers[i]);
+}
 
 console.log(result);
