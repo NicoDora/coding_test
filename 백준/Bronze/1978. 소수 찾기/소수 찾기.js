@@ -11,8 +11,8 @@ function isPrime(n) {
   return 1;
 }
 
-for (i of input) {
-  primeCount += isPrime(i);
+for (let i = 0; i < input.length; i++) {
+  primeCount += isPrime(input[i]);
 }
 
 console.log(primeCount);
