@@ -1,6 +1,7 @@
 const fs = require("fs");
-const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n")[1].split(" ").map(Number);
+const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
+const numbers = input[1].split(" ").map(Number);
 let primeCount = 0;
 
 function isPrime(n) {
@@ -11,8 +12,8 @@ function isPrime(n) {
   return 1;
 }
 
-for (let i = 0; i < input.length; i++) {
-  primeCount += isPrime(input[i]);
+for (let i = 0; i < Number(input[0]); i++) {
+  primeCount += isPrime(numbers[i]);
 }
 
 console.log(primeCount);
