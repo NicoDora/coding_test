@@ -3,13 +3,16 @@ const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n")[1].spl
 
 let primeCount = 0;
 
-for (i of input) {
-  const count = [];
-  if (i === 1) continue;
-  for (let j = 2; j < i; j++) {
-    if (i % j !== 0) count.push(i);
+function isPrime(n) {
+  if (n < 2) return 0;
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) return 0;
   }
-  if (count.length === i - 2) primeCount++;
+  return 1;
+}
+
+for (i of input) {
+  primeCount += isPrime(i);
 }
 
 console.log(primeCount);
