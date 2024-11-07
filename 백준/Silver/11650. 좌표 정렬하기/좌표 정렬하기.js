@@ -10,7 +10,7 @@ numbers.sort((a, b) => {
 });
 
 for (let i = 0; i < numbers.length; i++) {
-  result += `${numbers[i][0]} ${numbers[i][1]}\n`;
+  result += numbers[i][0] + " " + numbers[i][1] + "\n";
 }
 
 console.log(result);
