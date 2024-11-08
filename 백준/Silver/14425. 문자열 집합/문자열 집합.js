@@ -10,7 +10,7 @@ for (let i = 0; i < N; i++) {
 }
 
 for (let i = N; i < N + M; i++) {
-  result += set.has(input[i]) ? 1 : 0;
+  if (set.has(input[i])) result++;
 }
 
 console.log(result);
