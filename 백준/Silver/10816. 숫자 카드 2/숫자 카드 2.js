@@ -9,12 +9,14 @@ const map = new Map();
 let result = [];
 
 for (let i = 0; i < N; i++) {
-  if (map.has(myNumbers[i])) map.set(myNumbers[i], map.get(myNumbers[i]) + 1);
+  const number = map.get(myNumbers[i]);
+  if (number) map.set(myNumbers[i], number + 1);
   else map.set(myNumbers[i], 1);
 }
 
 for (let i = 0; i < M; i++) {
-  result.push(map.get(reqNumbers[i]) ? map.get(reqNumbers[i]) : 0);
+  const number = map.get(reqNumbers[i]);
+  result.push(number ? number : 0);
 }
 
 console.log(result.join(" "));
