@@ -8,21 +8,21 @@ function gcd(a, b) {
 }
 
 const N = input.shift();
-let gap = [];
+let gaps = [];
 let result = 0;
 
 for (let i = 0; i < N - 1; i++) {
-  gap.push(input[i + 1] - input[i]);
+  gaps.push(input[i + 1] - input[i]);
 }
 
-let gapGcd = gap[0];
+let gapGcd = gaps[0];
 
-for (let i = 0; i < gap.length - 1; i++) {
-  gapGcd = gcd(gapGcd, gap[i + 1]);
+for (let i = 0; i < gaps.length - 1; i++) {
+  gapGcd = gcd(gapGcd, gaps[i + 1]);
 }
 
-for (i of gap) {
-  result += i / gapGcd - 1;
+for (let gap of gaps) {
+  result += gap / gapGcd - 1;
 }
 
 console.log(result);
