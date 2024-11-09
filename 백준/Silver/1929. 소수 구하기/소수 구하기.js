@@ -12,14 +12,9 @@ for (let i = 2; i <= Math.sqrt(N); i++) {
   }
 }
 
-array[0] = 0;
 array[1] = 0;
 
-for (let i = 2; i < M; i++) {
-  array[i] = 0;
-}
-
-for (let i = 0; i < array.length; i++) {
+for (let i = M; i <= N; i++) {
   if (array[i]) result.push(i);
 }
 
