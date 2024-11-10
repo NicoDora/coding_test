@@ -2,12 +2,13 @@ const fs = require("fs");
 const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n").map(Number);
 
 const T = input.shift();
-const array = Array(1000001).fill(1);
+const max = Math.max(...input);
+const array = Array(max).fill(1);
 const result = [];
 
-for (let i = 2; i <= Math.sqrt(array.length); i++) {
+for (let i = 2; i <= Math.sqrt(max); i++) {
   if (array[i]) {
-    for (let j = i * i; j <= array.length; j += i) {
+    for (let j = i * i; j <= max; j += i) {
       array[j] = 0;
     }
   }
