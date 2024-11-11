@@ -6,8 +6,9 @@ const array = [];
 let result = 0;
 
 for (let i = 0; i < K; i++) {
-  if (input[i] === 0) array.pop();
-  else array.push(input[i]);
+  const n = input[i];
+  if (n === 0) array.pop();
+  else array.push(n);
 }
 
 for (let i = 0; i < array.length; i++) {
