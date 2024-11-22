@@ -10,4 +10,4 @@ for (let i = 1; i <= n; i++) {
 
 const sorted = array.sort((a, b) => a[3] - b[3] || a[2] - b[2] || a[1] - b[1]);
 
-console.log(sorted.pop()[0] + "\n" + sorted[0][0]);
+console.log(sorted[n - 1][0] + "\n" + sorted[0][0]);
