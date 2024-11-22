@@ -11,7 +11,7 @@ for (let i = 1; i <= N; i++) {
 }
 
 for (let i = N + 1; i <= M + N; i++) {
-  result.push(map.get(input[i].split(" ")[0]));
+  result.push(map.get(input[i]));
 }
 
 console.log(result.join("\n"));
