@@ -45,12 +45,8 @@ class MinHeap {
       let leftIndex = index * 2 + 1;
       let rightIndex = index * 2 + 2;
 
-      while (
-        // 왼쪽 자식노드가 있고 부모노드보다 작거나
-        (this.heap[leftIndex] && this.heap[leftIndex] < this.heap[index]) ||
-        // 오른쪽 자식노드가 있고 부모노드보다 작으면
-        (this.heap[rightIndex] && this.heap[rightIndex] < this.heap[index])
-      ) {
+      // 왼쪽 자식노드가 존재하면
+      while (leftIndex < this.heap.length) {
         let minIndex = leftIndex;
 
         if (
@@ -60,6 +56,8 @@ class MinHeap {
         ) {
           minIndex = rightIndex;
         }
+
+        if (this.heap[index] <= this.heap[minIndex]) break; // 부모노드가 더 작으면 종료
 
         // 노드 스왑 후 인덱스 업데이트
         this.swap(index, minIndex);
