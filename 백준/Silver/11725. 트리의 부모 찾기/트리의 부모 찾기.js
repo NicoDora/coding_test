@@ -2,10 +2,12 @@ const fs = require("fs");
 const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
 function dfs(node) {
-  for (const i of graph[node]) {
-    if (!visited[i]) {
-      visited[i] = node;
-      dfs(i);
+  for (let i = 0; i < graph[node].length; i++) {
+    const num = graph[node][i];
+
+    if (!visited[num]) {
+      visited[num] = node;
+      dfs(num);
     }
   }
 }
