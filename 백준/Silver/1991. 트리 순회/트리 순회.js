@@ -2,35 +2,32 @@ const fs = require("fs");
 const input = fs.readFileSync(0, "utf-8").toString().trim().split("\n");
 
 function preorderTraversal(root) {
+  if (root === ".") return;
+
   const [left, right] = map.get(root);
 
   preorderResult += root;
-  if (left === "." && right === ".") return;
-  if (left !== ".") preorderTraversal(left);
-  if (right !== ".") preorderTraversal(right);
+  preorderTraversal(left);
+  preorderTraversal(right);
 }
 
 function inorderTraversal(root) {
+  if (root === ".") return;
+
   const [left, right] = map.get(root);
 
-  if (left === "." && right === ".") {
-    inorderResult += root;
-    return;
-  }
-  if (left !== ".") inorderTraversal(left);
+  inorderTraversal(left);
   inorderResult += root;
-  if (right !== ".") inorderTraversal(right);
+  inorderTraversal(right);
 }
 
 function postorderTraversal(root) {
+  if (root === ".") return;
+
   const [left, right] = map.get(root);
 
-  if (left === "." && right === ".") {
-    postorderResult += root;
-    return;
-  }
-  if (left !== ".") postorderTraversal(left);
-  if (right !== ".") postorderTraversal(right);
+  postorderTraversal(left);
+  postorderTraversal(right);
   postorderResult += root;
 }
 
