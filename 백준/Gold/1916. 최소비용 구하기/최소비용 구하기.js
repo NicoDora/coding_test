@@ -87,15 +87,13 @@ function dijkstra(start, end) {
     if (distance[currentNode] < currentCost) continue;
 
     // 이웃노드 탐색
-    if (graph.has(currentNode)) {
-      for (const [nextNode, weight] of graph.get(currentNode)) {
-        const newCost = currentCost + weight;
+    for (const [nextNode, weight] of graph[currentNode]) {
+      const newCost = currentCost + weight;
 
-        // 새 가격이 기존의 가격보다 작으면
-        if (newCost < distance[nextNode]) {
-          distance[nextNode] = newCost;
-          heap.push([nextNode, newCost]);
-        }
+      // 새 가격이 기존의 가격보다 작으면
+      if (newCost < distance[nextNode]) {
+        distance[nextNode] = newCost;
+        heap.push([nextNode, newCost]);
       }
     }
   }
@@ -105,15 +103,13 @@ function dijkstra(start, end) {
 
 const N = Number(input[0]);
 const M = Number(input[1]);
-const graph = new Map();
+const graph = Array.from({ length: N + 1 }, () => []);
 const [startCity, endCity] = input[M + 2].split(" ").map(Number);
 
 // graph 초기화
 for (let i = 2; i < M + 2; i++) {
   const [start, end, cost] = input[i].split(" ").map(Number);
-
-  if (!graph.has(start)) graph.set(start, []);
-  graph.get(start).push([end, cost]);
+  graph[start].push([end, cost]);
 }
 
 console.log(dijkstra(startCity, endCity));
