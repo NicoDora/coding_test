@@ -17,6 +17,7 @@ function DSLR(num, commend) {
 }
 
 const T = Number(input[0]);
+const cmds = ["D", "S", "L", "R"];
 const result = [];
 
 for (let i = 1; i <= T; i++) {
@@ -25,17 +26,16 @@ for (let i = 1; i <= T; i++) {
   const queue = [[A, ""]];
   const visited = Array(10000).fill(false);
 
-  let front = 0;
-
-  while (queue.length > front) {
-    const [num, beforeCmd] = queue[front++];
+  for (let j = 0; j < queue.length; j++) {
+    const [num, beforeCmd] = queue[j];
 
     if (num === B) {
       result.push(beforeCmd);
       break;
     }
 
-    for (const currentCmd of ["D", "S", "L", "R"]) {
+    for (let k = 0; k < 4; k++) {
+      const currentCmd = cmds[k];
       const nextNum = DSLR(num, currentCmd);
 
       if (!visited[nextNum]) {
