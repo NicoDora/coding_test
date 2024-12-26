@@ -21,8 +21,8 @@ for (let i = 0; i < queue.length; i++) {
     break;
   }
 
-  for (const num of [1, 2, 3, 4, 5, 6]) {
-    let next = prev + num;
+  for (let n = 1; n < 7; n++) {
+    let next = prev + n;
 
     if (next > 100) continue;
     if (board[next]) next = board[next];
