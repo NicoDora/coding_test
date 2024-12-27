@@ -37,25 +37,29 @@ class MaxHeap {
     this.heap[0] = this.heap.pop();
 
     let index = 0;
-    let leftIndex = index * 2 + 1;
-    let rightIndex = index * 2 + 2;
 
-    while (leftIndex < this.heap.length) {
-      let maxIndex = leftIndex;
+    while (true) {
+      let leftIndex = index * 2 + 1;
+      let rightIndex = index * 2 + 2;
+      let maxIndex = index;
 
       if (
+        leftIndex < this.heap.length &&
+        this.heap[leftIndex] > this.heap[maxIndex]
+      ) {
+        maxIndex = leftIndex;
+      }
+      if (
         rightIndex < this.heap.length &&
-        this.heap[rightIndex] > this.heap[leftIndex]
+        this.heap[rightIndex] > this.heap[maxIndex]
       ) {
         maxIndex = rightIndex;
       }
 
-      if (this.heap[index] >= this.heap[maxIndex]) break;
+      if (maxIndex === index) break;
 
       this.swap(index, maxIndex);
       index = maxIndex;
-      leftIndex = index * 2 + 1;
-      rightIndex = index * 2 + 2;
     }
     return max;
   }
