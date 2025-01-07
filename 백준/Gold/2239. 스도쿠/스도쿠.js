@@ -12,18 +12,22 @@ function dfs(index) {
   // 1부터 9까지 들어갈 수 있는지 확인
   for (let num = 1; num <= 9; num++) {
     // 숫자가 유효하면 보드를 채우고 다음 빈칸으로 이동
-    if (!rows[x].has(num) && !cols[y].has(num) && !boxes[boxIndex].has(num)) {
+    if (
+      !rows[x].includes(num) &&
+      !cols[y].includes(num) &&
+      !boxes[boxIndex].includes(num)
+    ) {
       board[x][y] = num;
-      rows[x].add(num);
-      cols[y].add(num);
-      boxes[boxIndex].add(num);
+      rows[x].push(num);
+      cols[y].push(num);
+      boxes[boxIndex].push(num);
 
       if (dfs(index + 1)) return true;
 
       board[x][y] = 0;
-      rows[x].delete(num);
-      cols[y].delete(num);
-      boxes[boxIndex].delete(num);
+      rows[x].pop(num);
+      cols[y].pop(num);
+      boxes[boxIndex].pop(num);
     }
   }
 
@@ -32,9 +36,9 @@ function dfs(index) {
 
 const board = input.map((line) => line.split("").map(Number));
 const blanks = [];
-const rows = Array.from({ length: 9 }, () => new Set());
-const cols = Array.from({ length: 9 }, () => new Set());
-const boxes = Array.from({ length: 9 }, () => new Set());
+const rows = Array.from({ length: 9 }, () => []);
+const cols = Array.from({ length: 9 }, () => []);
+const boxes = Array.from({ length: 9 }, () => []);
 
 for (let x = 0; x < 9; x++) {
   for (let y = 0; y < 9; y++) {
@@ -42,9 +46,9 @@ for (let x = 0; x < 9; x++) {
     if (board[x][y] === 0) blanks.push([x, y]);
     // 초기 상태 세팅
     else {
-      rows[x].add(board[x][y]);
-      cols[y].add(board[x][y]);
-      boxes[Math.floor(x / 3) * 3 + Math.floor(y / 3)].add(board[x][y]);
+      rows[x].push(board[x][y]);
+      cols[y].push(board[x][y]);
+      boxes[Math.floor(x / 3) * 3 + Math.floor(y / 3)].push(board[x][y]);
     }
   }
 }
