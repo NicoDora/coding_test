@@ -13,12 +13,10 @@ for (let i = 0; i < N; i++) {
 for (let i = 0; i < N; i++) {
   let num = player[i];
 
-  for (let j = 2; num * j <= 1000000; j++) {
-    let multiple = num * j;
-
-    if (index[multiple] !== -1) {
+  for (let j = num * 2; j <= 1000000; j += num) {
+    if (index[j] !== -1) {
       result[i]++;
-      result[index[multiple]]--;
+      result[index[j]]--;
     }
   }
 }
