@@ -9,12 +9,17 @@ for (let i = 0; i < string.length; i++) {
   stack.push(string[i]);
 
   if (stack.length >= word.length) {
-    const end = stack.slice(-word.length).join("");
+    let isBomb = true;
 
-    if (end === word) {
-      for (let j = 0; j < word.length; j++) {
-        stack.pop();
+    for (let j = 0; j < word.length; j++) {
+      if (stack[stack.length - word.length + j] !== word[j]) {
+        isBomb = false;
+        break;
       }
+    }
+
+    if (isBomb) {
+      for (let j = 0; j < word.length; j++) stack.pop();
     }
   }
 }
