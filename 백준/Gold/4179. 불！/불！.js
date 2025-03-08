@@ -7,38 +7,38 @@ class Node {
     this.next = null;
   }
 }
-
 class Queue {
   constructor() {
     this.front = null;
     this.rear = null;
+    this.size = 0;
   }
 
-  isEmpty() {
-    return this.front === null;
-  }
-
-  enqueue(data) {
+  push(data) {
     const newNode = new Node(data);
 
-    if (this.isEmpty()) {
+    if (this.size === 0) {
       this.front = newNode;
+      this.rear = newNode;
     } else {
       this.rear.next = newNode;
+      this.rear = newNode;
     }
 
-    this.rear = newNode;
+    this.size++;
   }
 
-  dequeue() {
-    if (this.isEmpty()) return null;
+  pop() {
+    if (this.size === 0) {
+      return null;
+    }
 
-    const removedData = this.front.data;
+    const data = this.front.data;
+
     this.front = this.front.next;
+    this.size--;
 
-    if (!this.front) this.rear = null;
-
-    return removedData;
+    return data;
   }
 }
 
@@ -59,17 +59,17 @@ let result = "IMPOSSIBLE";
 for (let i = 0; i < R; i++) {
   for (let j = 0; j < C; j++) {
     if (miro[i][j] === "J") {
-      jihoonQueue.enqueue([i, j]);
+      jihoonQueue.push([i, j]);
       jihoonTime[i][j] = 0;
     } else if (miro[i][j] === "F") {
-      fireQueue.enqueue([i, j, 1]);
+      fireQueue.push([i, j, 1]);
       fireTime[i][j] = 0;
     }
   }
 }
 
-while (!fireQueue.isEmpty()) {
-  const [x, y] = fireQueue.dequeue();
+while (fireQueue.size) {
+  const [x, y] = fireQueue.pop();
 
   for (let k = 0; k < 4; k++) {
     const nx = x + directions[k][0];
@@ -84,13 +84,13 @@ while (!fireQueue.isEmpty()) {
       fireTime[nx][ny] === Infinity
     ) {
       fireTime[nx][ny] = fireTime[x][y] + 1;
-      fireQueue.enqueue([nx, ny]);
+      fireQueue.push([nx, ny]);
     }
   }
 }
 
-while (!jihoonQueue.isEmpty()) {
-  const [x, y] = jihoonQueue.dequeue();
+while (jihoonQueue.size) {
+  const [x, y] = jihoonQueue.pop();
 
   if (x === 0 || x === R - 1 || y === 0 || y === C - 1) {
     result = jihoonTime[x][y] + 1;
@@ -111,7 +111,7 @@ while (!jihoonQueue.isEmpty()) {
       jihoonTime[x][y] + 1 < fireTime[nx][ny]
     ) {
       jihoonTime[nx][ny] = jihoonTime[x][y] + 1;
-      jihoonQueue.enqueue([nx, ny]);
+      jihoonQueue.push([nx, ny]);
     }
   }
 }
