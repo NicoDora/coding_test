@@ -7,33 +7,25 @@ const solutions = input[1]
   .map(Number)
   .sort((a, b) => a - b);
 let min = Infinity;
-let result = [];
+let result = [0, 0, 0];
 
 for (let i = 0; i < N - 2; i++) {
   const a = solutions[i];
   let front = i + 1;
   let rear = N - 1;
-  let sumTemp = Infinity;
-  let absTemp = Infinity;
-  let tempArray = [];
 
   while (front < rear) {
     const b = solutions[front];
     const c = solutions[rear];
+    const sum = a + b + c;
 
-    if (Math.abs(a + b + c) < absTemp) {
-      sumTemp = a + b + c;
-      absTemp = Math.abs(a + b + c);
-      tempArray = [a, b, c];
+    if (Math.abs(sum) < min) {
+      min = Math.abs(sum);
+      result = [a, b, c];
     }
 
-    if (a + b + c > 0) rear--;
+    if (sum > 0) rear--;
     else front++;
-  }
-
-  if (absTemp < min) {
-    min = absTemp;
-    result = tempArray;
   }
 }
 
