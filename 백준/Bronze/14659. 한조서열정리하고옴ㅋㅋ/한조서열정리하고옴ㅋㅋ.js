@@ -4,6 +4,7 @@ const input = fs.readFileSync(0, "utf-8").toString().trim().split("\n");
 const N = Number(input[0]);
 const array = input[1].split(" ").map(Number);
 const nextGreaterIndex = Array(N).fill(N);
+// stack: [height, index]
 const stack = [];
 let result = 0;
 
