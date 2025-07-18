@@ -67,13 +67,9 @@ const result = [];
 
 for (let i = 1; i <= M; i++) {
   const [a, b] = input[i].split(" ").map(Number);
-  graph[a].push(b);
-}
 
-for (const current in graph) {
-  for (const next of graph[current]) {
-    inDegree[next]++;
-  }
+  graph[a].push(b);
+  inDegree[b]++;
 }
 
 for (let i = 1; i <= N; i++) {
@@ -85,8 +81,7 @@ while (minHeap.heap.length) {
   result.push(current);
 
   for (const next of graph[current]) {
-    inDegree[next]--;
-    if (inDegree[next] === 0) minHeap.insert(next);
+    if (--inDegree[next] === 0) minHeap.insert(next);
   }
 }
 
